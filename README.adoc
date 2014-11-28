@@ -683,10 +683,9 @@ return n,m,f;
 [source,cypher]
 ----
 MATCH (n)-[:DEPLOYED_ON]-(m:Server)
-return n,m;
+return n.name,n.endpoint,m.name,m.ip;
 ----
 //graph_result
-return n.name,n.endpoint,m.name,m.ip;
 //table
 
 
