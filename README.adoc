@@ -492,9 +492,6 @@ create (a)-[:READS_FROM]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat'})
-create (a)-[:SENDS_TO]->(b);
-
 match (a:Application{name:'android'}), (b:Service{name:'insurance_new'})
 create (a)-[:CALLS]->(b);
 
