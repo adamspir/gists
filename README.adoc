@@ -668,7 +668,7 @@ return n,m,f;
 ----
 //graph_result
 
-=== Flow of a data to Panoramix
+=== Flow of data to Panoramix
 //hide
 [source,cypher]
 ----
