@@ -481,17 +481,17 @@ create (a)-[:READS_FROM]->(b);
 match (a:Service {name: 'kumquat'}), (b:Sns {name: 'sales'})
 create (a)-[:SENDS_TO]->(b);
 
+//Affiliates Data Flow
 MATCH (n:Affiliates)-[r]->(m:Affiliates)
 return n,r,m;
 ----
 //graph_result
+
+//Systems hotels x-sell email
+MATCH (n)-[r{name:"hotels_x_sell_email"}]->(m)
+return n.name, type(r), m.name, labels(m);
 ----
-
-//table
-
-//graph
-
-
+//graph_result
 
 ----
 
