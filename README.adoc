@@ -485,6 +485,8 @@ create (a)-[:SENDS_TO]->(b);
 
 === Affiliates Data Flow
 //hide
+[source,cypher]
+----
 MATCH (n:Affiliates)-[r]->(m:Affiliates)
 return n,r,m;
 ----
@@ -492,6 +494,8 @@ return n,r,m;
 
 === Systems hotels x-sell email
 //hide
+[source,cypher]
+----
 MATCH (n)-[r{name:"hotels_x_sell_email"}]->(m)
 return n.name, type(r), m.name, labels(m);
 ----
