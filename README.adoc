@@ -359,6 +359,12 @@ create (a)-[:CALLS]->(b);
 match (a:ScheduledTask {name: 'affiliates_sales_updater'}), (b:Server {name: 'pdback_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
 
+match (a:Service {name: 'hotels_v2'}), (b:Server {name: 'sdiak_staging'})
+create (a)-[:DEPLOYED_ON]->(b);
+
+match (a:Service {name: 'hotels_v1'}), (b:Server {name: 'sdiak_staging'})
+create (a)-[:DEPLOYED_ON]->(b);
+
 match (a:ScheduledTask {name: 'affiliates_sales_updater'}), (b:Sns {name: 'sales'})
 create (a)-[:READS_FROM]->(b);
 
@@ -656,7 +662,7 @@ return n,m,f;
 ----
 //graph_result
 
-=== Flow of a flight reservation
+=== Flow of a data to Panoramix
 //hide
 [source,cypher]
 ----
