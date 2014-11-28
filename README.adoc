@@ -111,9 +111,15 @@ create (:Service:Rest{name:'mail_to_car_providers'});
 create (:Service:Rest{name:'mail_to_car_customers'});
 create (:Sns{name:'cars'});
 create (:Sqs{name:'cars'});
-
 //Panoramix
 create (:Database{name:'kumquat'});
+
+//Flights
+match (a:Service {name: 'flights'}), (b:Service {name: 'currency_service_v1'})
+create (a)-[:CALLS{usage:'exchange_rate_effect']->(b);
+
+//Panoramix
+
 
 match (a:Service {name: 'to_kumquat_worker'}), (b:Server {name: 'pdback_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
@@ -666,6 +672,9 @@ create (a)-[:READS_FROM]->(b);
 
 match (a:Service {name: 'kumquat'}), (b:Sns {name: 'sales'})
 create (a)-[:SENDS_TO]->(b);
+
+match (a:Application{name:'panoramix'}), (b:Service{name:'currency_service_v1'})
+create (a)-[:STORES_IN]->(b);
 
 ----
 
