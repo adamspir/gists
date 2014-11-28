@@ -709,6 +709,8 @@ return n,m;
 ----
 //graph_result
 
+
+
 === Apps and Services in servers - table
 //hide
 [source,cypher]
@@ -725,7 +727,7 @@ return n.name,n.endpoint,m.name,m.ip;
 MATCH (n:Service{name:"recommender"})-[]-(m) MATCH (m)-[]-(l)
 return n,m,l;
 ----
-//graph
+//graph_result
 
 ----
 
