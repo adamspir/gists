@@ -514,11 +514,8 @@ return n,m,f;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"kumquat"})<-[]->(m) MATCH (m)<-[]->(f)
-return n,m,f
-OR
-MATCH (n:Queue{name:"flights_to_kumquat"})-[]->(m)
-return n,m,f;
+MATCH (n:Service{name:"kumquat"})<-[]->(m) MATCH (m)<-[]->(f) MATCH (k:Queue{name:"flights_to_kumquat"})-[]->(l)
+return n,m,f,k,l;
 ----
 //graph_result
 
