@@ -646,7 +646,7 @@ create (a)-[:SENDS_TO]->(b);
 [source,cypher]
 ----
 MATCH (n:Database{name:"affiliates"})-[]-(m) 
-return n,m;
+return n,m
 AND
 MATCH (n:ScheduledTask{name:"affiliates_sales_updater"})-[]-(m) 
 return n,m;
