@@ -718,6 +718,15 @@ return n.name,n.endpoint,m.name,m.ip;
 ----
 //table
 
+=== Recommender
+//hide
+[source,cypher]
+----
+MATCH (n:Service{name:"recommender"})-[]-(m) (m)-[]-(l)
+return n,m,l
+----
+//table
+
 ----
 
 
