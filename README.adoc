@@ -98,6 +98,7 @@ create (:ScheduledTask{name:'hotels_to_crm'});
 create (:Service:Rest{name:'mail_to_hotel_providers'});
 create (:Service:Rest{name:'mail_to_hotel_customers'});
 create (:Sns{name:'hotels'});
+create (:Sqs{name:'hotels'});
 create (:Sqs{name:'insurance'});
 create (:Service:Rest{Endpoint:'http://cars-v2.staging.api.e-travel.gr/',name:'cars_v2'});
 create (:Database{name:'cars_db'});
