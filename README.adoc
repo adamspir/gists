@@ -365,6 +365,12 @@ create (a)-[:DEPLOYED_ON]->(b);
 match (a:Service {name: 'hotels_v1'}), (b:Server {name: 'sdiak_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
 
+match (a:Background_worker {name: 'hotels_ x_sell_emailer'}), (b:Server {name: 'pdback_staging'})
+create (a)-[:DEPLOYED_ON]->(b);
+
+match (a:Background_worker {name: 'real_margin'}), (b:Server {name: 'pdback_staging'})
+create (a)-[:DEPLOYED_ON]->(b);
+
 match (a:ScheduledTask {name: 'affiliates_sales_updater'}), (b:Sns {name: 'sales'})
 create (a)-[:READS_FROM]->(b);
 
