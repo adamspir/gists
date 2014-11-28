@@ -686,7 +686,14 @@ return n,m;
 ----
 //graph_result
 
-
+=== Apps and Services in servers - table
+//hide
+[source,cypher]
+----
+MATCH (n)-[:DEPLOYED_ON]-(m:Server)
+return n.name,n.endpoint,m.name,m.ip;
+----
+//table
 
 
 ----
