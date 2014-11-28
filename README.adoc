@@ -86,7 +86,7 @@ create (:Server{name:'ldiakopes1',endpoint:'ldiakopes1-staging.dc-staging.e-trav
 create (:Server{name:'ldiakopes2',endpoint:'ldiakopes2-staging-staging.dc-staging.e-travel.gr'});
 create (:Server{name:'ldiakopes_other',endpoint:'ldiakopes-other-staging.dc-staging.e-travel.gr'});
 //Panoramix
-create (:Database{name:'kumquat'});
+create (:Database{onoma:'kumquat'});
 
 match (a:Service {name: 'to_kumquat_worker'}), (b:Server {name: 'pdback_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
@@ -408,7 +408,7 @@ create (a)-[:CALLS{endpoint:'ui-v1.dev.api.e-travel.gr/api/flights/reservations/
 match (a:Service{name:'ui_v1'}), (b:Service{name:'hotels_v2'})
 create (a)-[:CALLS{name:'hotels_x_sell_email'}]->(b);
 
-match (a:ScheduledTask{name:'insurance_cli_old'}), (b:Service {name:'kumquat'})
+match (a:ScheduledTask{name:'insurance_cli_old'}), (b:Service {onoma:'kumquat'})
 create (a)-[:SEND_TO]->(b);
 
 match (a:Service{name:'currency_service_v1'}), (b:Database{name:'currency_db'})
@@ -514,7 +514,7 @@ return n,m,f;
 //hide
 [source,cypher]
 ----
-MATCH (n:Database{name:"kumquat"})-[r]->(m) MATCH (m)<-[]-(f)
+MATCH (n:Database{onoma:"kumquat"})-[r]->(m) MATCH (m)<-[]-(f)
 return n,m,f;
 ----
 //graph_result
