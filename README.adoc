@@ -506,7 +506,7 @@ return n,m;
 [source,cypher]
 ----
 MATCH (n:DatabaseServer{brand:"redis"})-[r]->(m) MATCH (m)<-[]-(f)
-return n,f;
+return n,m,f;
 ----
 //graph_result
 
