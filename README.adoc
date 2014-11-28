@@ -430,9 +430,6 @@ create (a)-[:CALLS{endpoint:'ui-v1.dev.api.e-travel.gr/api/flights/reservations/
 match (a:Service{name:'ui_v1'}), (b:Service{name:'hotels_v2'})
 create (a)-[:CALLS{name:'hotels_x_sell_email'}]->(b);
 
-match (a:ScheduledTask{name:'insurance_cli_old'}), (b:Service {name:'kumquat'})
-create (a)-[:SEND_TO]->(b);
-
 match (a:Service{name:'currency_service_v1'}), (b:Database{name:'currency_db'})
 create (a)-[:STORES_IN]->(b);
 
