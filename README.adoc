@@ -116,7 +116,7 @@ create (:Database{name:'kumquat'});
 
 //Flights
 match (a:Service {name: 'flights'}), (b:Service {name: 'currency_service_v1'})
-create (a)-[:CALLS{usage:'exchange_rate_effect']->(b);
+create (a)-[:CALLS{usage:'exchange_rate_effect'}]->(b);
 
 //Panoramix
 
