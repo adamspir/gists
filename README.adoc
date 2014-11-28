@@ -488,7 +488,7 @@ create (a)-[:SENDS_TO]->(b);
 [source,cypher]
 ----
 MATCH (n:Database{name:"affiliates"})-[]->(m) 
-return n,m,;
+return n,m;
 ----
 //graph_result
 
