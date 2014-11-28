@@ -668,6 +668,16 @@ return n,m,f;
 ----
 //graph_result
 
+=== test
+//hide
+[source,cypher]
+----
+MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (m)-[]-(f)
+return n,m,f;
+----
+//graph_result
+
+
 === Flow of data to Panoramix
 //hide
 [source,cypher]
