@@ -724,11 +724,11 @@ return n,m,l;
 ----
 //graph_result
 
-=== Currency
+=== Usage of exchange rate
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"currency_service_v1"})-[*0..2]-(m)-[r*0..1]-(l)
+MATCH (n:Service{name:"currency_service_v1"})-[*0..2]-(m)-[r:STORES_IN*0..1]-(l)
 return n,m,l;
 ----
 //graph_result
