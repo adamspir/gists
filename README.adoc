@@ -510,6 +510,14 @@ return n,m,f;
 ----
 //graph_result
 
+=== What if KumquatDB fails. Which systems are affected?
+//hide
+[source,cypher]
+----
+MATCH (n:Database{name:"kumquat"})-[r]->(m) MATCH (m)<-[]-(f)
+return n,m,f;
+----
+//graph_result
 
 === Apps and Services in servers
 //hide
