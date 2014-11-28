@@ -645,11 +645,8 @@ create (a)-[:SENDS_TO]->(b);
 //hide
 [source,cypher]
 ----
-MATCH (n:Database{name:"affiliates"})-[]-(m) 
-return n,m
-AND
-MATCH (n:ScheduledTask{name:"affiliates_sales_updater"})-[]-(m) 
-return n,m;
+MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affiliates_sales_updater"})-[]-(l) 
+return n,m,k,l;
 ----
 //graph_result
 
