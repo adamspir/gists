@@ -728,7 +728,7 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n{name:"currency*"})-[]-(m)
+MATCH (n{name:'currency*'})-[]-(m)
 return n,m;
 ----
 //graph_result
