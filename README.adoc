@@ -510,6 +510,18 @@ return n,m,f;
 ----
 //graph_result
 
+
+=== Apps and Services in servers
+//hide
+[source,cypher]
+----
+MATCH (n:Service )-[]->(m:Server)
+MATCH (p:Application )-[]->(m:Server)
+return n,p,m;
+----
+//graph_result
+
+
 ----
 
 //table
