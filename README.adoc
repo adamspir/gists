@@ -713,7 +713,7 @@ return n,m;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"recommender"})-[]-(m) MATCH (m)-[*1..1]-(l)
+MATCH (n:Service{name:"recommender"})-[]-(m) MATCH (m)-[*1..5]-(l)
 return n,m,l;
 ----
 //graph_result
