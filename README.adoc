@@ -505,7 +505,7 @@ return n,m;
 //hide
 [source,cypher]
 ----
-MATCH (n:DatabaseServer{brand:"redis"})-[*1..10]->(m)
+MATCH (n:DatabaseServer{brand:"redis"})-[*]->(m)
 return n,m;
 ----
 //graph_result
