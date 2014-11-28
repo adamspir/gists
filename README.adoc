@@ -723,7 +723,7 @@ return n.name,n.endpoint,m.name,m.ip;
 [source,cypher]
 ----
 MATCH (n:Service{name:"recommender"})-[]-(m) (m)-[]-(l)
-return n,m,l
+return n,m,l;
 ----
 //graph
 
