@@ -7,11 +7,11 @@ This repo contains content for use at http://gist.neo4j.org/.
 [source,cypher]
 ----
 //Flights Service
-create (:Service:Rest{Endpoint:'http://flights-v2.staging.api.e-travel.gr',name:'flights'});
+create (:Service:Rest:Affiliates{Endpoint:'http://flights-v2.staging.api.e-travel.gr',name:'flights'});
 create (:Server{name:'sdiak_staging',ip:'10.227.1.47'});
-create (:DatabaseServer{brand:'mssql'});
+create (:DatabaseServer:Affiliates{brand:'mssql'});
 create (:Database{name:'dreamflight'});
-create (:Database{name:'affiliates'});
+create (:Database:Affiliates{name:'affiliates'});
 create (:Database{name:'common_information'});
 create (:Database{name:'travel_insurances_db'});
 create (:Database{name:'rapida'});
@@ -40,16 +40,16 @@ create (:Application:Web{name:'panoramix'});
 create (:Application:Mobile{name:'android'});
 create (:Application:Mobile{name:'ios'});
 create (:Service:Rest{Endpoint:'mybookings-v1.staging.api.e-travel.gr',name:'my_bookings'});
-create (:Service:Web{Endpoint:'flightsws-v1.staging.api.e-travel.gr',name:'flights_ws'});
-create (:Server{name:'awsdiak_staging',ip:'10.227.1.62'});
+create (:Service:Web:Affiliates{Endpoint:'flightsws-v1.staging.api.e-travel.gr',name:'flights_ws'});
+create (:Server:Affiliates{name:'awsdiak_staging',ip:'10.227.1.62'});
 create (:Application:External{name:'metasearchers'});
-create (:Service:Rest{Endpoint:'affiliates-v1.staging.api.e-travel.gr',name:'affiliates'});
+create (:Service:Rest:Affiliates{Endpoint:'affiliates-v1.staging.api.e-travel.gr',name:'affiliates'});
 create (:Service:Rest{Endpoint:'rapidaservice-v1.staging.api.e-travel.gr',name:'rapida'});
 create (:Application:Web{name:'dfa'});
 create (:Server{name:'webdiak_staging',ip:'10.227.1.89'});
 create (:Application:Web{name:'my_bookings'});
-create (:Application:Web{name:'affiliates'});
-create (:ScheduledTask{name:'affiliates_sales_updater'});
+create (:Application:Web:Affiliates{name:'affiliates'});
+create (:ScheduledTask:Affiliates{name:'affiliates_sales_updater'});
 create (:Sns{name:'sales'});
 create (:Server{name:'pdback_staging',ip:'10.227.1.154'});
 create (:ScheduledTask{name:'auto_cancel_pnr'});
@@ -481,6 +481,9 @@ create (a)-[:READS_FROM]->(b);
 match (a:Service {name: 'kumquat'}), (b:Sns {name: 'sales'})
 create (a)-[:SENDS_TO]->(b);
 
+START n=node(*) 
+where n:Affiliates
+return n, labels(n);
 
 ----
 
