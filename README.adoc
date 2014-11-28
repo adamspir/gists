@@ -497,7 +497,7 @@ return n,r,m;
 [source,cypher]
 ----
 MATCH (n)-[r{name:"hotels_x_sell_email"}]->(m)
-return n.name, type(r), m.name, labels(m);
+return n,m;
 ----
 //graph_result
 
