@@ -724,6 +724,16 @@ return n,m,l;
 ----
 //graph_result
 
+=== Currency
+//hide
+[source,cypher]
+----
+MATCH (n{name:"currency*"})-[]-(m)
+return n,m;
+----
+//graph_result
+
+
 === Apps and Services in servers - table
 //hide
 [source,cypher]
