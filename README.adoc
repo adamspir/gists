@@ -737,7 +737,7 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"currency_service_v1"})-[*0..1]-(m)-[r*0..1]-(l:Database {name:'dreamflight'})
+MATCH (n:Service{name:"currency_service_v1"})-[*0..1]-(m)-[r*0..1]-(l)
 return n,m,l;
 ----
 //graph_result
