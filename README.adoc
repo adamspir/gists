@@ -91,8 +91,6 @@ create (:Service:Rest{name:'mail_to_insurance_company'});
 create (:Service:Rest{name:'mail_to_insurance_customers'});
 create (:Sns{name:'insurance'});
 create (:Sqs{name:'insurance'});
-create (:Service:Rest{Endpoint:'https://kumquat-v1.production.api.e-travel.gr/api-v1.0/en/insurance_contracts?email=services@pamediakopes.gr&password=wtf_flights',name:'kumquat_api_insurance_production'});
-create (:Service:Rest{Endpoint:'http://kumquat-v1.staging.api.e-travel.gr/api-v1.0/en/insurance_contracts?email=services@pamediakopes.gr&;password=wtf_flights',name:'kumquat_api_insurance_staging'});
 create (:Service:Rest{Endpoint:'http://insurance-v1.production.api.e-travel.gr/',name:'insurance_new'});
 create (:ScheduledTask{name:'insurance_cli_new'});
 create (:Application:Web{name:'insurance_site'});
@@ -108,7 +106,7 @@ create (:Service:Rest{name:'mail_to_car_providers'});
 create (:Service:Rest{name:'mail_to_car_customers'});
 create (:Sns{name:'cars'});
 create (:Sqs{name:'cars'});
-create (:Service:Rest{Endpoint:'https://kumquat-v1.production.api.e-travel.gr/api-v1.0/en/car_reservations?email=services@pamediakopes.gr&;password=wtf_flights',name:'kumquat_api_cars_production'});
+
 //Panoramix
 create (:Database{name:'kumquat'});
 
@@ -494,10 +492,10 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'insurance'})
 create (a)-[:READS_FROM]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat_api_insurance_production'})
+match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat_api_insurance_staging'})
+match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:Application{name:'android'}), (b:Service{name:'insurance_new'})
@@ -518,7 +516,7 @@ create (a)-[:SENDS_TO]->(b);
 match (a:ScheduledTask{name:'insurance_cli_new'}), (b:Service{name:'mail_to_insurance_company'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:ScheduledTask{name:'insurance_cli_new'}), (b:Service{name:'mail_to_customers'})
+match (a:ScheduledTask{name:'insurance_cli_new'}), (b:Service{name:'mail_to_insurance_customers'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:ScheduledTask{name:'insurance_cli_new'}), (b:Sns{name:'insurance'})
@@ -583,7 +581,7 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'cars'})
 create (a)-[:READS_FROM]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat_api_cars_production'})
+match (a:Service{name:'AWS redrive'}), (b:Service{name:'kumquat'})
 create (a)-[:SENDS_TO]->(b);
 
 //LeWeb
