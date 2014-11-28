@@ -733,7 +733,7 @@ return n,m,l;
 ----
 //graph_result
 
-=== Usage of exchange rate
+=== Usage of currency service
 //hide
 [source,cypher]
 ----
