@@ -514,7 +514,7 @@ return n,m,f;
 //hide
 [source,cypher]
 ----
-MATCH (n:Database{name:"kumquat"})<-[]->(m) MATCH (m)<-[]-(f)
+MATCH (n:Database{name:"kumquat"})<-[]->(m) MATCH (m)<-[]->(f)
 return n,m;
 ----
 //graph_result
