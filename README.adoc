@@ -515,7 +515,7 @@ return n,m,f;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service )-[]->(m:Server) , (p:Application )-[]->(m:Server)
+MATCH (n:Service)-[]->(m:Server) , (p:Application)-[]->(m:Server)
 return n,p,m;
 ----
 //graph_result
