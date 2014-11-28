@@ -501,6 +501,15 @@ return n,m;
 ----
 //graph_result
 
+=== What if redis server fails. Which systems are affected?
+//hide
+[source,cypher]
+----
+MATCH (n:DatabaseServer{brand:"redis"})-[r]->(m)
+return n,m;
+----
+//graph_result
+
 ----
 
 //table
