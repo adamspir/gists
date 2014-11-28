@@ -487,8 +487,8 @@ create (a)-[:SENDS_TO]->(b);
 //hide
 [source,cypher]
 ----
-MATCH (n:Database)-[]->(m) 
-return n,m;
+MATCH (n:Affiliates)-[r]->(m:Affiliates)
+return n,r,m;
 ----
 //graph_result
 
