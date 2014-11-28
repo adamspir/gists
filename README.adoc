@@ -697,7 +697,7 @@ return n.name,n.endpoint,m.name,m.ip;
 
 ----
 
-//table
+
 
 //graph
 
