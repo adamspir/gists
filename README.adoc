@@ -701,9 +701,9 @@ return n.name,n.endpoint,m.name,m.ip;
 
 //graph
 
-=== Full graph
+
 ----
 
 //table
-
+=== Full graph
 //graph
