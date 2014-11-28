@@ -515,7 +515,7 @@ return n,m,f;
 [source,cypher]
 ----
 MATCH (n:Service{name:"kumquat"})<-[r]->(m) MATCH (m)<-[]->(f)
-return n,m,f;
+return n,m,f
 UNION
 MATCH (n:Queue{name:"flights_to_kumquat"})<-[r]->(m) MATCH (m)<-[]->(f)
 return n,m,f;
