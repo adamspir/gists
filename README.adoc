@@ -685,7 +685,7 @@ return n,m;
 //hide
 [source,cypher]
 ----
-MATCH (n:DatabaseServer{brand:"redis"})-[r]-(m) MATCH (m)-[]-(f)
+MATCH (n:DatabaseServer{brand:"redis"})-[r]-(m)-[]-(f)
 return n,m,f;
 ----
 //graph_result
@@ -695,7 +695,7 @@ return n,m,f;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"kumquat"})-[]-(m) MATCH (m)-[]-(f)
+MATCH (n:Service{name:"kumquat"})-[]-(m)-[r]-(f)
 return n,m,f;
 ----
 //graph_result
