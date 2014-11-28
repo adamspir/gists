@@ -737,8 +737,8 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"currency_service_v1"})-[*0..1]-(m)
-return n,m;
+MATCH (n:Service{name:"currency_service_v1"})-[*0..1]-(m)-[:STORES_IN]-(l)
+return n,m,l;
 ----
 //graph_result
 
