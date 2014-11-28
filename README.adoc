@@ -725,7 +725,7 @@ return n.name,n.endpoint,m.name,m.ip;
 MATCH (n:Service{name:"recommender"})-[]-(m) (m)-[]-(l)
 return n,m,l
 ----
-//table
+//graph
 
 ----
 
