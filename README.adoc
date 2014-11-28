@@ -77,6 +77,11 @@ create (:Service:Rest{endpoint:'http://hotels_v1.stage.api.e-travel.gr',name:'ho
 create (:Service:Rest{endpoint:'http://hotels_v2.stage.api.e-travel.gr',name:'hotels_v2'});
 create (:Service:Rest{endpoint:'http://kumquat-v1.staging.api.e-travel.gr/api-v1.0/',name:'kumquat'});
 create (:Database{name:'currency_db'});
+//Recommender
+create (:Service:Rest{Endpoint:'https://kumquat-v1.production.api.e-travel.gr/api-v1.0/en/car_reservations?email=services@pamediakopes.gr&;password=wtf_flights',name:'kumquat_api_cars_production'});
+create (:Service:Rest{Endpoint:'recommender-v1.production.api/recommendations/hotels', name:'recommender'});
+create (:Service:Rest{name:'pull_from_unified_log_datafeeder'});
+create (:Database{name:'recommender_db'});
 //LeWeb
 create (:Application:Web{name:'leadmin',endpoint:' http://admin.staging.e-travel.gr'});
 create (:Application:Web{name:'lesso',endpoint:'http://lesso.staging.e-travel.gr'});
@@ -356,6 +361,23 @@ create (a)-[:CALLS]->(b);
 
 
 //Services
+
+//Recommender
+match (a:Service{name:'hotels_v2'}), (b:Database{name:'hotels_db'})
+create (a)-[:STORES_IN{endpoint:'hotels-v2.production.api/recommendations'}]->(b);
+
+match (a:Service{name:'hotels_v2'}), (b:Service{name:'recommender'})
+create (a)-[:CALLS{endpoint:'recommender-v1.production.api/recommendations/hotels'}]->(b);
+
+match (a:Service{name:'recommender'}), (b:Service{name:'pull_from_unified_log_datafeeder'})
+create (a)-[:CALLS]->(b);
+
+match (a:Service{name:'pull_from_unified_log_datafeeder'}), (b:Database{name:'recommender_db'})
+create (a)-[:STORES_IN]->(b);
+
+match (a:Service{name:'pull_from_unified_log_datafeeder'}), (b:Database{name:'hotels_db'})
+create (a)-[:SENDS_TO]->(b);
+
 match (a:ScheduledTask {name: 'affiliates_sales_updater'}), (b:Server {name: 'pdback_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
 
