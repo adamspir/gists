@@ -693,7 +693,6 @@ return n,m;
 MATCH (n)-[:DEPLOYED_ON]-(m:Server)
 return n.name,n.endpoint,m.name,m.ip;
 ----
-//table
 
 
 ----
