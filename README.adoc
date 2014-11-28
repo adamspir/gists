@@ -489,8 +489,6 @@ create (a)-[:SENDS_TO]->(b);
 ----
 MATCH (n:Database{name:"affiliates"})-[]->(m) MATCH (m)<-[]-(f)
 return n,m,f;
-//MATCH (n:Affiliates)-[r]->(m:Affiliates)
-//return n,r,m;
 ----
 //graph_result
 
