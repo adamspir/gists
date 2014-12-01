@@ -82,6 +82,7 @@ create (:Service{name:'AWS redrive'});
 create (:DatabaseServer{brand:'aws_redshift'});
 create (:Database{name:'real_margin'});
 create (:Application{name:'qlikview'});
+create (:Background_worker{name:'real_margin'});
 //Recommender
 create (:Service:Rest{Endpoint:'recommender-v1.production.api/recommendations/hotels', name:'recommender'});
 create (:Service:Rest{name:'pull_from_unified_log_datafeeder'});
@@ -713,10 +714,10 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
 create (a)-[:CALLS{endpoint:'http://flights-v2.production.api.e-travel.gr/RealMargin'}]->(b);
 
-match (a:Service{name:'real_margin'}), (b:Sqs{name:'real_margin'})
+match (a:Background_worker{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
-match (a:Service{name:'real_margin'}), (b:Sqs{name:'real_margin'})
+match (a:Background_worker{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_to_flights'})
