@@ -713,10 +713,10 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
 create (a)-[:CALLS{endpoint:'http://flights-v2.production.api.e-travel.gr/RealMargin'}]->(b);
 
-match (a:Service{name:'real_margin'}), (b:Sqs{name:'flights_real_margin'})
+match (a:Service{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
-match (a:Service{name:'real_margin'}), (b:Sqs{name:'panoramix_real_margin'})
+match (a:Service{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_to_flights'})
