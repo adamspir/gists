@@ -715,6 +715,9 @@ create (a)-[:CALLS{endpoint:'http://flights-v2.production.api.e-travel.gr/RealMa
 match (a:Background_worker{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
+match (a:Background_worker{name:'real_margin'}), (b:Sqs{name:'flights_dynamic_pricing'})
+create (a)-[:READS_FROM]->(b);
+
 match (a:Background_worker{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:READS_FROM]->(b);
 
