@@ -751,7 +751,7 @@ return n,m,k,l,labels(n);
 [source,cypher]
 ----
 MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affiliates_sales_updater"})-[:READS_FROM]-(l)
-return n,labels(n),m,labels(m),k,labels(k),l,labels(l);
+return n.name,labels(n),m.name,labels(m),k.name,labels(k),l.name,labels(l);
 ----
 //table
 
