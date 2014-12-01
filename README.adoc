@@ -743,10 +743,15 @@ create (a)-[:SENDS_TO]->(b);
 //hide
 [source,cypher]
 ----
-MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affiliates_sales_updater"})-[]-(l)
+MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affiliates_sales_updater"})-[:READS_FROM]-(l)
 return n,m,k,l,labels(n);
 ----
 //graph_result
+[source,cypher]
+----
+MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affiliates_sales_updater"})-[:READS_FROM]-(l)
+return labels(n),labels(m),labels(k),labels(l);
+----
 //table
 
 
