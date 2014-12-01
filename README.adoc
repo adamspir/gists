@@ -874,7 +874,7 @@ return n,m;
 //hide
 [source,cypher]
 ----
-MATCH (n:Sqs{name:'iur'})-[*0..2]-(m)
+MATCH (n:Sqs{name:'iur'})-[*0..1]-(m)
 return n,m;
 ----
 //graph_result
