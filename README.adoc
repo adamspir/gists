@@ -817,6 +817,15 @@ return n,m,l;
 ----
 //graph_result
 
+=== Real Margin
+//hide
+[source,cypher]
+----
+MATCH (n:Service{name:"real_margin"})-[]-(m)
+return n,m;
+----
+//graph_result
+
 
 === Apps and Services in servers - table
 //hide
