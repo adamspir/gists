@@ -883,7 +883,7 @@ return n,m,k,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:'AWS redrive'})-[*0..2]-(m)
+MATCH (n:Service{name:'AWS redrive'})-[*0..1]-(m)
 return n,m;
 ----
 //graph_result
