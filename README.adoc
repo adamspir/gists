@@ -820,7 +820,7 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Service{name:"real_margin"})-[]-(m)
+MATCH (n:Database{name:"real_margin"})-[]-(m)
 return n,m;
 ----
 //graph_result
