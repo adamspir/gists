@@ -726,7 +726,7 @@ create (a)-[:READS_FROM]->(b);
 match (a:DatabaseServer {brand: 'aws_redshift'}), (b:Database {name: 'real_margin'})
 create (a)-[:HOSTS]->(b);
 
-match (a:Service {name: 'real_margin'}), (b:Database {name: 'real_margin'})
+match (a:Background_worker{name:'real_margin'}), (b:Database {name: 'real_margin'})
 create (a)-[:STORES_IN]->(b);
 
 match (a:Background_runner {name: 'rm_aggregator'}), (b:Database {name: 'real_margin'})
