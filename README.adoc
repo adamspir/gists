@@ -81,6 +81,7 @@ create (:Service:Rest{endpoint:'http://hotels_v1.stage.api.e-travel.gr',name:'ho
 create (:Service:Rest{endpoint:'http://hotels_v2.stage.api.e-travel.gr',name:'hotels_v2'});
 create (:Service:Rest{endpoint:'http://kumquat-v1.staging.api.e-travel.gr/api-v1.0/',name:'kumquat'});
 create (:Database{name:'currency_db'});
+create (:Service{name:'AWS redrive'});
 //Recommender
 create (:Service:Rest{Endpoint:'https://kumquat-v1.production.api.e-travel.gr/api-v1.0/en/car_reservations?email=services@pamediakopes.gr&;password=wtf_flights',name:'kumquat_api_cars_production'});
 create (:Service:Rest{Endpoint:'recommender-v1.production.api/recommendations/hotels', name:'recommender'});
@@ -499,7 +500,7 @@ create (a)-[:RETRIEVES_FROM{name:'exchange_rates'}]->(b);
 match (a:Background_runner{name:'payment_backlog'}), (b:Database{name:'common_information'})
 create (a)-[:READS_FROM]->(b);
 
-create (:Service{name:'AWS redrive'});
+
 
 match (a:Service{name:'AWS redrive'}), (b:Background_worker{name:'real_margin'})
 create (a)-[:SEND_TO]->(b);
@@ -713,6 +714,14 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
 create (a)-[:CALLS]->(b);
 
+match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'flights_real_margin'})
+create (a)-[:READS_FROM]->(b);
+
+match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_real_margin'})
+create (a)-[:READS_FROM]->(b);
+
+match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_to_flights'})
+create (a)-[:READS_FROM]->(b);
 ----
 
 === Affiliates Data Flow
