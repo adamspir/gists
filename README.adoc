@@ -62,8 +62,6 @@ create (:Queue:Redis{name:'hotels_email'});
 create (:Service:Windows{name:'flights_rating_service_worker_service'});
 create (:Sns{name:'flights_dynamic_pricing'});
 create (:Sqs{name:'flights_dynamic_pricing'});
-create (:Sns{name:'flights_real_margin'});
-create (:Sqs{name:'flights_real_margin'});
 //Services
 create (:Service:Windows{name:'to_kumquat_worker'});
 create (:Background_worker{name:'hotels_ x_sell_emailer'});
@@ -118,10 +116,10 @@ create (:Service:Rest{name:'mail_to_car_providers'});
 create (:Service:Rest{name:'mail_to_car_customers'});
 create (:Sns{name:'cars'});
 create (:Sqs{name:'cars'});
+create (:Sns{name:'real_margin'});
+create (:Sqs{name:'real_margin'});
 //Panoramix
 create (:Database{name:'kumquat'});
-create (:Sns{name:'panoramix_real_margin'});
-create (:Sqs{name:'panoramix_real_margin'});
 create (:Sns{name:'panoramix_to_flights'});
 create (:Sqs{name:'panoramix_to_flights'});
 //Unified log
@@ -701,16 +699,13 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Sns{name:'flights_dynamic_pricing'}), (b:Sqs{name:'flights_dynamic_pricing'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:Service{name:'flights'}), (b:Sns{name:'flights_real_margin'})
+match (a:Service{name:'flights'}), (b:Sns{name:'real_margin'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:Sns{name:'flights_real_margin'}), (b:Sqs{name:'flights_real_margin'})
+match (a:Sns{name:'real_margin'}), (b:Sqs{name:'real_margin'})
 create (a)-[:SENDS_TO]->(b);
 
-match (a:Application{name:'panoramix'}), (b:Sns{name:'panoramix_real_margin'})
-create (a)-[:SENDS_TO]->(b);
-
-match (a:Sns{name:'panoramix_real_margin'}), (b:Sqs{name:'panoramix_real_margin'})
+match (a:Application{name:'panoramix'}), (b:Sns{name:'real_margin'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:Application{name:'panoramix'}), (b:Sns{name:'panoramix_to_flights'})
@@ -722,10 +717,10 @@ create (a)-[:SENDS_TO]->(b);
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
 create (a)-[:CALLS{endpoint:'http://flights-v2.production.api.e-travel.gr/RealMargin'}]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'flights_real_margin'})
+match (a:Service{name:'real_margin'}), (b:Sqs{name:'flights_real_margin'})
 create (a)-[:READS_FROM]->(b);
 
-match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_real_margin'})
+match (a:Service{name:'real_margin'}), (b:Sqs{name:'panoramix_real_margin'})
 create (a)-[:READS_FROM]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_to_flights'})
