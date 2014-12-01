@@ -870,7 +870,7 @@ return n,m;
 ----
 //graph_result
 
-=== Real Margin
+=== IUR Files
 //hide
 [source,cypher]
 ----
