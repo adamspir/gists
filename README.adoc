@@ -87,6 +87,17 @@ create (:Background_worker{name:'real_margin'});
 create (:Service:Rest{Endpoint:'recommender-v1.production.api/recommendations/hotels', name:'recommender'});
 create (:Service:Rest{name:'pull_from_unified_log_datafeeder'});
 create (:Database{name:'recommender_db'});
+//IUR files
+create (:Server{name:'skroutz',ip:'10.0.0.228'});
+create (:Sns{name:'iur'});
+create (:Sqs{name:'iur'});
+create (:Sqs{name:'iur_downloader'});
+create (:Sqs{name:'iur_test_accelerators'});
+create (:Folder{name:'iur_backup_folder'});
+create (:Service{name:'test_accelerators'});
+create (:Application:Web{name:'panoramix_staging'});
+
+
 //LeWeb
 create (:Application:Web{name:'leadmin',endpoint:' http://admin.staging.e-travel.gr'});
 create (:Application:Web{name:'lesso',endpoint:'http://lesso.staging.e-travel.gr'});
@@ -684,7 +695,7 @@ match (a:Service {name: 'kumquat'}), (b:Sns {name: 'sales'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:Application{name:'panoramix'}), (b:Service{name:'currency_service_v1'})
-create (a)-[:STORES_IN]->(b);
+create (a)-[:CALLS]->(b);
 
 //Real Margin
 
@@ -751,6 +762,31 @@ create (a)-[:READS_FROM]->(b);
 
 match (a:Service{name:'data_runner'}), (b:DatabaseServer{brand: 'aws_redshift'})
 create (a)-[:STORES_IN]->(b);
+
+//IUR files
+match (a:Service{name:'sabre'}), (b:Server{name:'skroutz',ip:'10.0.0.228'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Server{name:'skroutz',ip:'10.0.0.228'}), (b:Sns{name:'iur'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'iur'}), (b:Sqs{name:'iur'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'iur'}), (b:Sqs{name:'iur_downloader'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'iur'}), (b:Sqs{name:'iur_test_accelerators'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sqs{name:'iur'}), (b:Service{name:'AWS redrive'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sqs{name:'iur_downloader'}), (b:Folder{name:'iur_backup_folder'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sqs{name:'iur_test_accelerators'}), (b:Service{name:'test_accelerators'})
+
 ----
 
 === Affiliates Data Flow
