@@ -786,6 +786,13 @@ match (a:Sqs{name:'iur_downloader'}), (b:Folder{name:'iur_backup_folder'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:Sqs{name:'iur_test_accelerators'}), (b:Service{name:'test_accelerators'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Service{name:'AWS redrive'}), (b:Application{name:'panoramix'})
+create (a)-[:READS_FROM]->(b);
+
+match (a:Service{name:'test_accelerators'}), (b:Application{name:'panoramix_staging'})
+create (a)-[:SENDS_TO]->(b);
 
 ----
 
