@@ -820,7 +820,7 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Database{name:"real_margin"})-[]-(m)<-[]-(k)<-[]-(l)
+MATCH (n:Sqs{name:"real_margin"})-[*1..2]-(m)
 return n,m;
 ----
 //graph_result
