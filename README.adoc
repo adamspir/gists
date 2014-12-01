@@ -505,8 +505,6 @@ create (a)-[:READS_FROM]->(b);
 
 
 
-match (a:Service{name:'AWS redrive'}), (b:Database{name:'real_margin'})
-create (a)-[:SEND_TO]->(b);
 
 match (a:Service{name:'content_v2'}), (b:Application{name:'leweb'})
 create (a)-[:CALLED_BY]->(b);
