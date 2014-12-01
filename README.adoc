@@ -879,6 +879,14 @@ return n,m,k,l;
 ----
 //graph_result
 
+=== AWS REDRIVE
+//hide
+[source,cypher]
+----
+MATCH (n:Service{name:'AWS redrive'})-[*0..2]-(m)
+return n,m;
+----
+//graph_result
 
 === Apps and Services in servers - table
 //hide
