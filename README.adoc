@@ -60,6 +60,10 @@ create (:Service:Windows{name:'autoticketing_service_worker'});
 create (:Queue:Redis{name:'autoticketing'});
 create (:Queue:Redis{name:'hotels_email'});
 create (:Service:Windows{name:'flights_rating_service_worker_service'});
+create (:Sns{name:'flights_dynamic_pricing'});
+create (:Sqs{name:'flights_dynamic_pricing'});
+create (:Sns{name:'flights_real_margin'});
+create (:Sqs{name:'flights_real_margin'});
 //Services
 create (:Service:Windows{name:'to_kumquat_worker'});
 create (:Background_worker{name:'hotels_ x_sell_emailer'});
@@ -113,6 +117,10 @@ create (:Sns{name:'cars'});
 create (:Sqs{name:'cars'});
 //Panoramix
 create (:Database{name:'kumquat'});
+create (:Sns{name:'panoramix_real_margin'});
+create (:Sqs{name:'panoramix_real_margin'});
+create (:Sns{name:'panoramix_to_flights'});
+create (:Sqs{name:'panoramix_to_flights'});
 
 //Flights
 match (a:Service {name: 'flights'}), (b:Service {name: 'currency_service_v1'})
@@ -675,6 +683,35 @@ create (a)-[:SENDS_TO]->(b);
 
 match (a:Application{name:'panoramix'}), (b:Service{name:'currency_service_v1'})
 create (a)-[:STORES_IN]->(b);
+
+//Real Margin
+
+match (a:Service{name:'flights'}), (b:Sns{name:'flights_dynamic_pricing'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'flights_dynamic_pricing'}), (b:Sqs{name:'flights_dynamic_pricing'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Service{name:'flights'}), (b:Sns{name:'flights_real_margin'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'flights_real_margin'}), (b:Sqs{name:'flights_real_margin'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Application{name:'panoramix'}), (b:Sns{name:'panoramix_real_margin'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'panoramix_real_margin'}), (b:Sqs{name:'panoramix_real_margin'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Application{name:'panoramix'}), (b:Sns{name:'panoramix_to_flights'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Sns{name:'panoramix_to_flights'}), (b:Sqs{name:'panoramix_to_flights'})
+create (a)-[:SENDS_TO]->(b);
+
+match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
+create (a)-[:CALLS]->(b);
 
 ----
 
