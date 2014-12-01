@@ -71,7 +71,6 @@ create (:ScheduledTask{name:'insurance_cli_old'});
 create (:Service{endpoint:'http://currencyservice-v1.production.api.e-travel.gr',name:'currency_service_v1'});
 create (:ScheduledTask{name:'currencies_updater_v2'});
 create (:Background_runner{name:'payment_backlog'});
-create (:Background_worker{name:'real_margin'});
 create (:Background_runner{name:'rm_aggregator'});
 create (:Utility{name:'iur_fanout'});
 create (:Service:Rest{endpoint:'http://content_v2.staging.api.e-travel.gr',name:'content_v2'});
@@ -415,9 +414,6 @@ match (a:Service {name: 'hotels_v1'}), (b:Server {name: 'sdiak_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
 
 match (a:Background_worker {name: 'hotels_ x_sell_emailer'}), (b:Server {name: 'pdback_staging'})
-create (a)-[:DEPLOYED_ON]->(b);
-
-match (a:Background_worker {name: 'real_margin'}), (b:Server {name: 'pdback_staging'})
 create (a)-[:DEPLOYED_ON]->(b);
 
 match (a:ScheduledTask {name: 'affiliates_sales_updater'}), (b:Sns {name: 'sales'})
