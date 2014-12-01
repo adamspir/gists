@@ -82,8 +82,10 @@ create (:Service:Rest{endpoint:'http://hotels_v2.stage.api.e-travel.gr',name:'ho
 create (:Service:Rest{endpoint:'http://kumquat-v1.staging.api.e-travel.gr/api-v1.0/',name:'kumquat'});
 create (:Database{name:'currency_db'});
 create (:Service{name:'AWS redrive'});
+create (:DatabaseServer{brand:'aws_redshift'});
+create (:Database{name:'real_margin'});
+create (:Application{name:'qlikview'});
 //Recommender
-create (:Service:Rest{Endpoint:'https://kumquat-v1.production.api.e-travel.gr/api-v1.0/en/car_reservations?email=services@pamediakopes.gr&;password=wtf_flights',name:'kumquat_api_cars_production'});
 create (:Service:Rest{Endpoint:'recommender-v1.production.api/recommendations/hotels', name:'recommender'});
 create (:Service:Rest{name:'pull_from_unified_log_datafeeder'});
 create (:Database{name:'recommender_db'});
@@ -712,7 +714,7 @@ match (a:Sns{name:'panoramix_to_flights'}), (b:Sqs{name:'panoramix_to_flights'})
 create (a)-[:SENDS_TO]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Service{name:'flights'})
-create (a)-[:CALLS]->(b);
+create (a)-[:CALLS{endpoint:'http://flights-v2.production.api.e-travel.gr/RealMargin'}]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'flights_real_margin'})
 create (a)-[:READS_FROM]->(b);
@@ -722,6 +724,19 @@ create (a)-[:READS_FROM]->(b);
 
 match (a:Service{name:'AWS redrive'}), (b:Sqs{name:'panoramix_to_flights'})
 create (a)-[:READS_FROM]->(b);
+
+match (a:DatabaseServer {brand: 'aws_redshift'}), (b:Database {name: 'real_margin'})
+create (a)-[:HOSTS]->(b);
+
+match (a:Service {name: 'real_margin'}), (b:Database {name: 'real_margin'})
+create (a)-[:STORES_IN]->(b);
+
+match (a:Background_runner {name: 'rm_aggregator'}), (b:Database {name: 'real_margin'})
+create (a)-[:READS_FROM]->(b);
+
+match (a:Background_runner {name: 'rm_aggregator'}), (b:Application {name: 'qlikview'})
+create (a)-[:SENDS_TO]->(b);
+
 ----
 
 === Affiliates Data Flow
