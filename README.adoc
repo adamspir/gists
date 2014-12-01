@@ -823,7 +823,7 @@ return n,m,l;
 //hide
 [source,cypher]
 ----
-MATCH (n:Sqs{name:"real_margin"})-[*1..2]-(m)
+MATCH (n:Background_worker{name:"real_margin"})-[*1..2]-(m)
 return n,m;
 ----
 //graph_result
