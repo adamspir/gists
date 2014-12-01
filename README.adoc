@@ -747,6 +747,7 @@ MATCH (n:Database{name:"affiliates"})-[]-(m) MATCH (k:ScheduledTask{name:"affili
 return n,m,k,l,labels(n);
 ----
 //graph_result
+//table
 
 
 
